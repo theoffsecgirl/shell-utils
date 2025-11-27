@@ -67,4 +67,4 @@ alias wshk='wireshark &'
 
 # Container MacOS
 alias container-ls='container list'
-alias container-shell='container run --remove --interactive --tty --entrypoint=/bin/bash --volume $(pwd):/mnt --name "0xhunter-$(mktemp -u XXXXXX)" --workdir /mnt'
+alias container-shell='container run --remove --interactive --tty --entrypoint=/bin/bash --volume $(pwd):/mnt --name "$(hostname -s)-$(mktemp -u XXXXXX)" --workdir /mnt'
