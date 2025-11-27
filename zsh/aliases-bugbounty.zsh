@@ -67,5 +67,4 @@ alias wshk='wireshark &'
 
 # Container MacOS
 alias container-ls='container list'
-alias kali-persist='container start 0xhunter >/dev/null 2>&1 || container create 0xhunter kalilinux/kali-rolling; container exec -it 0xhunter /bin/bash'
-alias kali-ephemeral='container run --name 0xghost --remove -it --entrypoint=/bin/bash --volume \$(pwd):/mnt --workdir /mnt kalilinux/kali-rolling'
+alias container-shell='container run --remove --interactive --tty --entrypoint=/bin/bash --volume $(pwd):/mnt --name "0xhunter-$(mktemp -u XXXXXX)" --workdir /mnt'
