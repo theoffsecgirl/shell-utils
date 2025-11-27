@@ -65,6 +65,10 @@ alias unsetproxy='unset http_proxy; unset https_proxy'
 alias findpcap='find . -type f -name "*.pcap"'
 alias wshk='wireshark &'
 
+
 # Container MacOS
 alias container-ls='container list'
-alias container-shell='container run --remove --interactive --tty --entrypoint=/bin/bash --volume $(pwd):/mnt --name "$(hostname -s)-$(mktemp -u XXXXXX)" --workdir /mnt'
+alias container-shell-persist='container run --interactive --tty --entrypoint=/bin/bash --volume $(pwd):/mnt --name "OxETERNAL" --workdir /mnt'
+alias container-shell-ephemeral='container run --remove --interactive --tty --entrypoint=/bin/bash --volume $(pwd):/mnt --name "0xEPHEMERAL" --workdir /mnt'
+alias kali-eternal='container-shell-persist kalilinux/kali-roling:latest'
+alias kali-ephemeral='container-shell-ephemeral kalilinux/kali-rolling:latest'
