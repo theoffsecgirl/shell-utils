@@ -1,5 +1,6 @@
 # --------------------------------------
-# Alias para containers en macOS
+# Alias para containers en macOS (Apple containerd)
+# Sin network porque la red por defecto ya funciona.
 # --------------------------------------
 
 # Listar contenedores
@@ -12,7 +13,6 @@ alias container-shell-persist='container run \
     --entrypoint=/bin/bash \
     --volume $(pwd):/mnt \
     --workdir /mnt \
-    --network bridge \
     --name "0xETERNAL"'
 
 # Shell efímera (se borra al salir, nombre aleatorio)
@@ -23,10 +23,9 @@ alias container-shell-ephemeral='container run \
     --entrypoint=/bin/bash \
     --volume $(pwd):/mnt \
     --workdir /mnt \
-    --network bridge \
     --name "0xEPHEMERAL-$(date +%s)"'
 
-# Kali con persistencia
+# Kali persistente
 alias kali-eternal='container-shell-persist kalilinux/kali-rolling:latest'
 
 # Kali efímera
@@ -34,4 +33,3 @@ alias kali-ephemeral='container-shell-ephemeral kalilinux/kali-rolling:latest'
 
 # Kali con puerto web expuesto (para labs rápidos)
 alias kali-web='container-shell-ephemeral -p 8080:80 kalilinux/kali-rolling:latest'
-
