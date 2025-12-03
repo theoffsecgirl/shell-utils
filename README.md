@@ -1,4 +1,3 @@
-````markdown
 # shell-utils
 
 Colección unificada de alias y funciones para shell, diseñada para ser portátil entre macOS, Linux y WSL.
