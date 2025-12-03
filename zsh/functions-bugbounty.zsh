@@ -38,7 +38,6 @@ mkproject() {
         echo "Proyecto '$project_name' creado con subcarpetas: $*"
     fi
 }
-alias mkproject='mkproject'
 
 # Inicializa proyectos con estructura y archivos base según plantilla
 # Uso: mkproject_template nombre_proyecto plantilla
