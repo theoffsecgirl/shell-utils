@@ -44,7 +44,7 @@ if command -v lsd &> /dev/null; then
     alias ll='lsd -la --group-dirs=first'
     alias l='lsd'
     alias cl='clear && lsd'
-elif command -v eza &> /0dev/null; then
+elif command -v eza &> /dev/null; then
     alias ll='eza -la --group-directories-first'
     alias l='eza'
     alias cl='clear && eza'
