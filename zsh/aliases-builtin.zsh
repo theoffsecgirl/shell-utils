@@ -8,31 +8,33 @@ case "$(uname)" in
 esac
 
 # Historial de comandos
-alias clrhist="echo '' > ~/.zsh_history"
+alias clrhist=": > ~/.zsh_history"
 alias rmhist="rm ~/.zsh_history"
 
 # Wordlists por plataforma
 if [[ "$PLATFORM" == "linux" && -d "/usr/share/wordlists" ]]; then
     export WORDLISTS="/usr/share/wordlists"
-    alias wordlists='cd $WORDLISTS'
-    alias lsw='ls -la $WORDLISTS'
-    alias fword='find $WORDLISTS -type f -iname "*$1*"'
+    alias wordlists='cd "$WORDLISTS"'
+    alias lsw='ls -la "$WORDLISTS"'
+    fword() { find "$WORDLISTS" -type f -iname "*$1*"; }
 elif [[ "$PLATFORM" == "macos" ]]; then
     if [[ -d "/opt/homebrew/share/wordlists" ]]; then
         export WORDLISTS="/opt/homebrew/share/wordlists"
     elif [[ -d "$HOME/wordlists" ]]; then
         export WORDLISTS="$HOME/wordlists"
     fi
-    [[ -n "$WORDLISTS" ]] && alias wordlists='cd $WORDLISTS'
+    [[ -n "$WORDLISTS" ]] && alias wordlists='cd "$WORDLISTS"'
 fi
 
-# Cat mejorado y original
+# Cat mejorado y original (bat / batcat cross-platform)
 if command -v batcat &> /dev/null; then
+    alias bat='batcat'
     alias cat='batcat --paging=always --decorations=always'
 elif command -v bat &> /dev/null; then
     alias cat='bat --paging=always --decorations=always'
 fi
 
+# cat original
 if [[ "$PLATFORM" == "macos" ]]; then
     alias rcat='/bin/cat'
 else
@@ -82,7 +84,7 @@ if [[ "$PLATFORM" == "linux" ]]; then
 elif [[ "$PLATFORM" == "macos" ]]; then
     alias watchlog='tail -f /var/log/system.log'
     alias logerror='grep -i error /var/log/system.log'
-    alias logauth='log show --predicate "eventMessage contains "authentication"" --last 1h'
+    alias logauth='log show --predicate "eventMessage CONTAINS \"authentication\"" --last 1h'
     alias logsize='du -sh /var/log/* | sort -h'
     alias viewlog='log show --last 1h'
 fi
@@ -117,7 +119,7 @@ else
 fi
 
 alias freespace='du -sh * | sort -h'
-alias cpuload="uptime | awk '{print "Carga:", $9, $10, $11}'"
+alias cpuload="uptime | awk '{print \"Carga:\", $(NF-2), $(NF-1), \$NF}'"
 alias findtxt='find . -type f -name "*.txt"'
 alias grepip="grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}'"
 alias greppass="grep -i 'password'"
