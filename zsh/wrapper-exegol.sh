@@ -1,0 +1,1 @@
+ex() { exegol exec free -- "$@"; }
