@@ -22,30 +22,21 @@ alias update='update_system'
 
 
 # mkproject: crear proyectos y subcarpetas
-unalias mkproject 2>/dev/null
-
-# Uso: mkproject nombre_proyecto [sub1 sub2 sub3...]
 mkproject() {
-    if [[ -z "$1" ]]; then
-        echo "Tienes que indicar el nombre del proyecto!"
-        return 1
-    fi
+  if [[ -z "$1" ]]; then
+    echo "Uso: mkproject <nombre> [sub1 sub2 ...]"
+    return 1
+  fi
 
-    project_name="$1"
-    shift
+  local project_name="$1"
+  shift
 
-    if [[ "$#" -eq 0 ]]; then
-        mkdir -p "$project_name"
-        echo "Proyecto '$project_name' creado (sin subcarpetas)."
-    else
-        for sub in "$@"; do
-            mkdir -p "$project_name/$sub"
-        done
-        echo "Proyecto '$project_name' creado con subcarpetas: $*"
-    fi
+  mkdir -p "$project_name"
+  for sub in "$@"; do
+    mkdir -p "$project_name/$sub"
+  done
 }
 
-alias mkp='mkproject'
 
 
 # mkproject_template: crear proyectos con plantillas
