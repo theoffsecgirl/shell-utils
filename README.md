@@ -15,6 +15,7 @@ shell-utils/
     aliases-builtin.zsh
     aliases-bugbounty.zsh
     functions-bugbounty.zsh
+    wrapper-exegol.zsh
   git/
     git-aliases.conf
 ````
@@ -64,6 +65,8 @@ Cargar alias y funciones:
 [ -f "$SHELL_UTILS/zsh/aliases-builtin.zsh" ] && source "$SHELL_UTILS/zsh/aliases-builtin.zsh"
 [ -f "$SHELL_UTILS/zsh/aliases-bugbounty.zsh" ] && source "$SHELL_UTILS/zsh/aliases-bugbounty.zsh"
 [ -f "$SHELL_UTILS/zsh/functions-bugbounty.zsh" ] && source "$SHELL_UTILS/zsh/functions-bugbounty.zsh"
+[ -f "$SHELL_UTILS/zsh/wrapper-exegol.zsh" ] && source "$SHELL_UTILS/zsh/wrapper-exegol.zsh"
+
 ```
 
 Recargar configuración:
@@ -110,6 +113,16 @@ export PLATFORM
 * Funciones: `zsh/functions-bugbounty.zsh`
 * Alias de Git: `git/git-aliases.conf`
 
+## Wrapper para ejecutar herramientas ofensivas dentro de Exegol.
+Centraliza toda la ejecución de hacking en el contenedor (imagen free), manteniendo el host limpio y evitando dependencias locales.
+
+### Uso:
+ ```
+# En máquina local
+ ex nmap -sC -sV target.com
+ ex ffuf -u https://target/FUZZ -w wordlist.txt
+ ex nmap -sC -sV target.com
+ ex ffuf -u https://target/FUZZ -w wordlist.txt
 El objetivo es mantener este repositorio como una librería estable, limpia y portable, desacoplada de cualquier configuración local y adaptable a cualquier entorno.
 
 ```
